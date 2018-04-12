@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Exchange</title>
+</head>
+<body>
+    <h2> Currency Exchange </h2>
+    <input type="number" value="100" id="inCount">
+    <select id="inKind">
+        <option name="USDollar" value="USD">US Dollar</option>
+        <option name="Euro" value="EUR">Euro</option>
+        <option name="ChineseY" value="RMB">Chinese Yuan</option>
+        <option name="HongKongD" value="HKD">Hong Kong Dollar</option>
+    </select>
+    <br>
+    <input type="text" id="outCount">
+    <select id="outKind">
+        <option name="USDollar" value="USD">US Dollar</option>
+        <option name="Euro" value="EUR">Euro</option>
+        <option name="ChineseY" value="RMB">Chinese Yuan</option>
+        <option name="HongKongD" value="HKD">Hong Kong Dollar</option>
+    </select>
+    <br>
+    <input type="button" value=" Convert " onclick="ChangeMoney()">
+<script>
+    // This function comes with two value
+    // The "inMoney" and "outMoney" are the arguments
+    // Inside of it, there is a switch function
+    // In order to do the Currency Exchange
+    function getRate(inMoney,outMoney) {
+        var rate;
+        switch (inMoney){
+            case "USD":{
+                switch (outMoney){
+                    case "USD" : rate = 1; break;
+                    case "EUR" : rate = 0.8; break;
+                    case "RMB" : rate = 6.3; break;
+                    case "HKD" : rate = 7.8; break;
+                }
+                break;
+            }
+            case "EUR":{
+                switch (outMoney){
+                    case "USD" : rate = 1.2; break;
+                    case "EUR" : rate = 1; break;
+                    case "RMB" : rate = 7.7; break;
+                    case "HKD" : rate = 9.6; break;
+                }
+                break;
+            }
+            case "RMB":{
+                switch (outMoney){
+                    case "USD" : rate = 0.16; break;
+                    case "EUR" : rate = 0.11; break;
+                    case "RMB" : rate = 1; break;
+                    case "HKD" : rate = 1.25; break;
+                }
+                break;
+            }
+            case "HKD":{
+                switch (outMoney){
+                    case "USD" : rate = 0.13; break;
+                    case "EUR" : rate = 0.09; break;
+                    case "RMB" : rate = 0.8; break;
+                    case "HKD" : rate = 1; break;
+                }
+                break;
+            }
+        }
+        return rate;
+    }
+    function ChangeMoney() {
+        //Here is the main function
+        //By using global variable, the value can be taken into the function
+        var inKind = document.getElementById("inKind").value;
+        var outKind = document.getElementById("outKind").value;
+        var amount = document.getElementById("inCount").value;
+        var CurrencyRate = getRate(inKind, outKind);
+        document.getElementById("outCount").value = amount * CurrencyRate;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Club Register</title>
+
+    <style>
+        .inputBox{position: absolute;
+                  border: 3px blue solid;
+                  width : 300px; height: 400px}
+
+        .informBox{position: absolute;
+                  border: 3px blue solid;
+                  width : 300px; height: 400px;
+                  left: 400px;}
+
+        .hintBox {position: relative;
+                  border: 3px blue solid;
+                  width : 300px; height: 100px;
+                  top:410px;}
+
+        #inputFN:hover{background-color: lightblue;}
+        #inputLN:hover{background-color: lightblue;}
+        #inputMN:hover{background-color: lightblue;}
+        #inputYB:hover{background-color: lightblue;}
+        #inputGD:hover{background-color: lightblue;}
+        #showInfo {color: black;}
+    </style>
+
+</head>
+<body>
+
+    <div class="inputBox">
+        <h2 style="position: center">Register:</h2>
+            First Name<br>
+            <input type="text" id="inputFN" value="Jeremy"
+                   onfocusin="enterTextBoxFN()"
+                   onfocusout="leaveTextBoxFN()"
+            ><br>
+
+            Family Name<br>
+            <input type="text" id="inputLN" value="Riera"
+                   onfocusin="enterTextBoxLN()"
+                   onfocusout="leaveTextBoxLN()"
+            ><br>
+
+            Mobile Number<br>
+            <input type="text" id="inputMN" value="13507568042"
+                   onfocusin="enterTextBoxMN()"
+                   onfocusout="leaveTextBoxMN()"
+            ><br><br>
+
+            Grade:
+            <select id="inputGR">
+                <option value="1"> Year 1</option>
+                <option value="2"> Year 2</option>
+                <option value="3"> Year 3</option>
+                <option value="4"> Year 4</option>
+            </select><br>
+            Gender:
+            <select id="inputGD">
+                <option value="Female"> Female </option>
+                <option value="Male"> Male </option>
+            </select><br>
+            Year born:<br>
+            <input type="text" id="inputYB" value="1984"
+                   onfocusin="enterTextBoxYB()"
+                   onfocusout="leaveTextBoxYB()">
+            <br><br>
+            <button onclick="myFunction()"> Submit Form </button>
+    </div>
+    
+    <div class="informBox">
+        <h2> Verify Information </h2>
+        <p id="showInfo"></p>
+    </div>
+    
+    <br><br>
+
+    <div class="hintBox">
+        <h3> Hint Box </h3>
+        <p id="hintText"></p>
+    </div>
+
+    <script>
+        function enterTextBoxFN() {
+            inputFN.style.background = "gray";
+            document.getElementById("hintText").innerHTML = "Enter Fist Name 输入姓氏";
+        }
+        function enterTextBoxLN() {
+            inputLN.style.background = "gray";
+            document.getElementById("hintText").innerHTML = "Enter Last Name 输入名字";
+        }
+        function enterTextBoxMN() {
+            inputMN.style.background = "gray";
+            document.getElementById("hintText").innerHTML = "Enter Mobile Number 输入电话";
+        }
+        function enterTextBoxYB() {
+            inputYB.style.background = "gray";
+            document.getElementById("hintText").innerHTML = "Enter Year Born 输入年份";
+        }
+
+
+        function leaveTextBoxFN() {
+            inputFN.style.background = "";
+        }
+        function leaveTextBoxLN() {
+            inputLN.style.background = "";
+        }
+        function leaveTextBoxMN() {
+            inputMN.style.background = "";
+        }
+        function leaveTextBoxYB() {
+            inputYB.style.background = "";
+        }
+        function myFunction() {
+            var gd = document.getElementById("inputGD").value;
+            var infortitle="M";
+            var fn = document.getElementById("inputFN").value;
+            var ln = document.getElementById("inputLN").value;
+            var mn = document.getElementById("inputMN").value;
+            var gr = document.getElementById("inputGR").value;
+            var yb = document.getElementById("inputYB").value;
+            var age = 2018-yb;
+            if (gd=="Male")  {gd="Male"; infortitle="Mr.";}
+            else {gd="Female"; infortitle="Miss.";}
+            document.getElementById("showInfo").innerHTML = "Dear <b> " + infortitle + "  " + fn + " " + ln +
+                "</b> <br>thank you for registering, we will contact you on <br>" + mn + "<br><br>" +
+                "Grade:" + gr + "<br>" + "Born:" + yb + "<br>" +"Gender:" + gd + "<br>" + "Age:" + age +
+                "<br><br><button type='submit'> Confirm </button>";
+
+        }
+    </script>
+</body>
+</html>

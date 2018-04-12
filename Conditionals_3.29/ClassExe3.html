@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Exercise 3</title>
+</head>
+<body>
+
+    Number: <input type = "number" id = "num1"><br>
+    Number: <input type = "number" id = "num2"><br>
+    <p>
+        <button type="button" onclick = "cal('adding')">+</button>
+        <button type="button" onclick = "cal('minous')">-</button>
+        <button type="button" onclick = "cal('times')">*</button>
+        <button type="button" onclick = "cal('devide')">/</button>
+    </p>
+
+    <input type="text" placeholder="result" id="result" >
+<script>
+    function cal( action ) {
+        var numb1 = Number(document.getElementById("num1").value);
+        var numb2 = Number(document.getElementById("num2").value);
+        var result;
+        switch (action) {
+            case "adding": result = (numb1 + numb2);break;
+            case "minous": result = (numb1 - numb2);break;
+            case "times" : result = (numb1 * numb2);break;
+            case "devide": result = (numb1 / numb2);break;
+        }
+        document.getElementById("result").value = result ;
+    }
+</script>
+</body>
+</html>

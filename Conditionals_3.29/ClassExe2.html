@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Exercise 2</title>
+</head>
+<body>
+    <p>Input Car name</p>
+    <input type = "text" id = "CarName">
+    <button onclick = "GetCont()"> Try it </button>
+    <p id = "GetCont"></p>
+
+<script>
+    function GetCont() {
+        var car = document.getElementById("CarName").value;
+        var cont;
+        switch (car){
+
+            case "Benz":
+            case "Audi":
+            case "Porsche":
+            case "BMW" :cont="German Car";
+                        break;
+
+            case "Mazda":
+            case "Cadillac":
+            case "chevrolet":
+            case "Ford" :cont="American Car";
+                        break;
+            case "Peugeot" :cont="French Car";
+                            break;
+            default :cont="Unknown car name";
+
+        }
+        document.getElementById("GetCont").innerHTML=cont;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Exchange</title>
+</head>
+<body>
+    <h2> Currency Exchange </h2>
+    <input type="number" value="100" id="inCount">
+    <select id="inKind">
+        <option name="USDollar" value="USD">US Dollar</option>
+        <option name="Euro" value="EUR">Euro</option>
+        <option name="ChineseY" value="RMB">Chinese Yuan</option>
+        <option name="HongKongD" value="HKD">Hong Kong Dollar</option>
+    </select>
+    <br>
+    <input type="text" id="outCount">
+    <select id="outKind">
+        <option name="USDollar" value="USD">US Dollar</option>
+        <option name="Euro" value="EUR">Euro</option>
+        <option name="ChineseY" value="RMB">Chinese Yuan</option>
+        <option name="HongKongD" value="HKD">Hong Kong Dollar</option>
+    </select>
+    <br>
+    <input type="button" value=" Convert " onclick="ChangeMoney()">
+    <p>Real time exchange rate provided by <pre>fixer.io</pre><se</p>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script>
+    var result;
+    $.ajax({
+        url: 'http://data.fixer.io/api/latest?access_key=0e27aae8c55584fa027383b287c45a6e',
+        dataType:'jsonp',
+        success: function(json) {
+            result = json;
+            console.log(json)
+        }
+    });
+
+    function getEURbasedRate(outMoney){
+        switch (outMoney){
+            case "USD" : return result.rates.USD;
+            case "EUR" : return 1;
+            case "RMB" : return result.rates.CNY;
+            case "HKD" : return result.rates.HKD;
+        }
+    }
+
+
+    function ChangeMoney() {
+        //Here is the main function
+        //By using global variable, the value can be taken into the function
+        var inKind = document.getElementById("inKind").value;
+        var outKind = document.getElementById("outKind").value;
+        var amount = document.getElementById("inCount").value;
+        document.getElementById("outCount").value = (amount / getEURbasedRate(inKind)) * getEURbasedRate(outKind);
+    }
+</script>
+</body>
+</html>

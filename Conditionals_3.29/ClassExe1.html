@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Exercise 1</title>
+</head>
+<body>
+    <p>Input your name and age</p>
+    <input type="text" id="Name" value="Alex">
+    <input type="number" id="Age" value="0">
+    <br>
+    <button onclick="GetAge()">Try it</button>
+    <p id="GetAge"></p>
+
+<script>
+    function GetAge() {
+        var showText;
+        var username = document.getElementById("Name").value;
+        var age = document.getElementById("Age").value;
+        if (age > 21) {
+            showText = username + "<br>" +
+                    "You are over 21 years of age. You can drink and drive in the US - " +
+                    "But not at the same time"
+
+        }
+        else if (age>18){
+            showText = username + "<br>" +
+                    "You are over 18 years of age , but less than 21. You can not buy " +
+                    "alcoholic drinks but you are allowed to drive in the US";
+        }
+        else showText = username + "<br>" +
+                    "You are under 18 years of age; You can not drink alcohol or drive" +
+                    "in some US states";
+        document.getElementById("GetAge").innerHTML = showText;
+    }
+</script>
+</body>
+</html>

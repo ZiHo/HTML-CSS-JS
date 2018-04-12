@@ -1,0 +1,7 @@
+h1{font-size: 40px; color: yellow; background-color: blue; text-align: center;}
+h2{color: white; background-color: gray; text-align: right;}
+#para2{background-color: orange; font-size: 20px;}
+#para3{background-color: orange; font-size: 20px;}
+.paras{color: green; font-size: 20px}
+a:link,a:visited{ text-decoration: none;}
+a:hover{ color:red; text-decoration: underline}

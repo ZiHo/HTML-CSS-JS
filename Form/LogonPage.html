@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logon Page</title>
+
+    <style>
+        h1{text-align: left;}
+        h2{text-align: center;}
+
+        #oldMember{
+            position: absolute;background-color: lightblue;}
+        #newMember{
+            position: absolute;background-color: lightgreen; left:400px}
+
+        .Member{border: 1px black solid;
+                width : 350px; height: 700px}
+        .Member1{border: 1px black solid;
+            width : 350px; height: 700px}
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Logon Page</h1>
+        <br><br><br>
+    </div>
+
+    <div class="Member" id="oldMember">
+        <h2 style="">Already a member</h2>
+        <form method="get">
+            username<br>
+            <input type="text" name="username"><br>
+            for password<br>
+            <input type="text" name="password"><br>
+            <input type="checkbox">
+            remember details<br><br>
+            <input type="submit">
+            <br><br>
+            Forgot Password <a href="#" >Click here</a>
+            <br>
+            Picture<br>
+            <img src="pic.jpg">;
+        </form>
+    </div>
+
+    <div class="Member1" id="newMember">
+        <h2 style="">New sign up</h2>
+        <form method="get">
+            Firstname<br>
+            <input type="text" name="Firstname"><br>
+            Lastname<br>
+            <input type="text" name="Lastname"><br>
+            Date of Birth<br>
+            <input type="date" name="Birth" min="1900-01-01"><br>
+            username<br>
+            <input type="text" name="username"><br>
+            Email<br>
+            <input type="email" name="email"><br>
+            Telephone<br>
+            <input type="number" name="telephone"><br>
+            Comments box<br>
+            <textarea name="comment" rows="10" cols="30">
+            </textarea>
+            <br>
+            <input type="submit">
+            <br><br><br>
+            Submit <a href="#" >Click here</a>
+        </form>
+    </div>
+
+</body>
+</html>

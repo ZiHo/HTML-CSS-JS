@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Try</title>
+</head>
+<body>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    var result;
+    $.ajax({
+        url: 'http://data.fixer.io/api/latest?access_key=0e27aae8c55584fa027383b287c45a6e',
+        dataType:'jsonp',
+        success: function(json) {
+            result = json;
+        }
+    });
+
+
+
+    function getRate(inMoney,outMoney) {
+        var rate;
+        switch (inMoney){
+            case "USD":{
+                switch (outMoney){
+                    case "USD" : rate = 1; break;
+                    case "EUR" : rate = 0.8; break;
+                    case "RMB" : rate = 6.3; break;
+                    case "HKD" : rate = 7.8; break;
+                }
+                break;
+            }
+            case "EUR":{
+                switch (outMoney){
+                    case "USD" : rate = 1.2; break;
+                    case "EUR" : rate = 1; break;
+                    case "RMB" : rate = 7.7; break;
+                    case "HKD" : rate = 9.6; break;
+                }
+                break;
+            }
+            case "RMB":{
+                switch (outMoney){
+                    case "USD" : rate = 0.16; break;
+                    case "EUR" : rate = 0.11; break;
+                    case "RMB" : rate = 1; break;
+                    case "HKD" : rate = 1.25; break;
+                }
+                break;
+            }
+            case "HKD":{
+                switch (outMoney){
+                    case "USD" : rate = 0.13; break;
+                    case "EUR" : rate = 0.09; break;
+                    case "RMB" : rate = 0.8; break;
+                    case "HKD" : rate = 1; break;
+                }
+                break;
+            }
+        }
+        return rate;
+    }
+    function ChangeMoney() {
+        //Here is the main function
+        //By using global variable, the value can be taken into the function
+        var inKind = document.getElementById("inKind").value;
+        var outKind = document.getElementById("outKind").value;
+        var amount = document.getElementById("inCount").value;
+        var CurrencyRate = getRate(inKind, outKind);
+        document.getElementById("outCount").value = amount * CurrencyRate;
+    }
+</script>
+
+</body>
+</html>
