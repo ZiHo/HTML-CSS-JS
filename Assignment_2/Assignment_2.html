@@ -4,28 +4,378 @@
     <meta charset="UTF-8">
     <title> Loan Calculator </title>
     <style>
+        /*CSS for whole table*/
+        table {
+            width: 800px;
+            border: 2px solid peachpuff;
+            border-collapse: collapse;
+        }
 
+        /*CSS for table border*/
+        td, th, tr {
+            border: 2px solid peachpuff;
+            padding: 3px 3px 3px 3px;
+        }
+
+        /*CSS for whole page*/
+        #container {
+            position: relative;
+            background-color: lightblue;
+            padding: 0px 30px 10px 30px;
+        }
+
+        /*CSS for showing the Information Table*/
+        .showInforTable {
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            background-color: peachpuff;
+            width: 750px;
+        }
+
+        /*CSS for showing the count table*/
+        .showCountTable {
+            position: relative;
+            background-color: blue;
+            margin-bottom: 20px;
+            width: 300px;
+            border: 2px solid blue;
+            left: 20px;
+        }
+
+        /*CSS for the numbers in the showing table*/
+        .showCount {
+            background-color: lightblue;
+            height: 60px;
+        }
+
+        /*The div which is created for helping to put the table in the right*/
+        .showPayments {
+            position: absolute;
+            right: 30px;
+            top: 50px;
+        }
+
+        .showPayment {
+            height: 120px;
+            background-color: lightblue;
+        }
+
+        /*CSS for showing white numbers in the table*/
+        .fontcolor {
+            color: white;
+        }
+
+        .fontcolorMon {
+            color: white;
+            font-size: 40px;
+        }
+
+        #errorMessage {
+            color: red;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+            color: green;
+        }
+
+        h4 {
+            color: yellow;
+        }
     </style>
 </head>
 <body>
+
 <div id="container">
     <h2>Loan Calculator</h2>
 
+    <!--The table for input information to the website-->
+    <table align="center">
+        <tr>
+            <th colspan="3"> Personal detail</th>
+        </tr>
+        <tr>
+            <td colspan="1">
+                First Name<br>
+                <input id="inFirstName" type="text">
+            </td>
+            <td colspan="2">
+                Family Name<br>
+                <input id="inFamilyName" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                Email Address<br>
+                <input id="inEmailAddress" type="email">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="3">
+                Loan Request
+            </th>
+        </tr>
+        <tr>
+            <td>
+                loan Amount<br>
+                <input id="inLoanAmount" type="number">
+            </td>
+            <td>
+                for how many months(12-120):<br>
+                <input id="inMonths" type="number">
+            </td>
+            <td>
+                Start payment ( within 6 months )<br>
+                <select id="startMonth">
+                    <option value="0">--Choose--</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <form>
+                    <input type="radio" name="required" value="Null" checked> No cover required <br>
+                    <input type="radio" name="required" value="EP"> Employment Cover - in the event you lose your job up
+                    to 3
+                    months <br>
+                    <input type="radio" name="required" value="PC"> Part Cover - up to 12 months <br>
+                    <input type="radio" name="required" value="FC"> In the event you can not work again! <br>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="Calculate" onclick="showAll()">
+            </td>
+            <td colspan="2">
+                messages:
+                <p id="errorMessage">
+            </td>
+        </tr>
+    </table>
 
-</div >
 
+    <!--The table shows the information according to what have been submit-->
+
+    <div class="showInforTable">
+        <h3 id="showTitle"> Welcome to the loan calculator </h3>
+
+        <div class="showCountTable">
+            <h4>Amount Requested</h4>
+            <div class="showCount">
+                <p id="AR" class="fontcolor"> Null </p>
+            </div>
+        </div>
+
+        <div class="showCountTable">
+            <h4>Total Interest</h4>
+            <div class="showCount">
+                <p id="TI" class="fontcolor"> Null </p>
+            </div>
+        </div>
+
+        <div class="showCountTable">
+            <h4>Insurance</h4>
+            <div class="showCount">
+                <p id="In" class="fontcolor"> Null </p>
+            </div>
+        </div>
+
+        <div class="showCountTable">
+            <h4>Total Repayment</h4>
+            <div class="showCount">
+                <p id="TR" class="fontcolor"> Null </p>
+            </div>
+        </div>
+        <!--In order to show the table on the right in a clear way-->
+        <!--They are put into a new div-->
+        <div class="showPayments">
+            <div class="showCountTable">
+                <h4>Monthly Payments</h4>
+                <div class="showPayment">
+                    <p id="payment" class="fontcolorMon">Null</p>
+                </div>
+            </div>
+
+            <div class="showCountTable">
+                <h4>First Payments</h4>
+                <div class="showCount">
+                    <p id="startTime" class="fontcolor">Null</p>
+                </div>
+            </div>
+
+            <div class="showCountTable">
+                <h4>Last Payment</h4>
+                <div class="showCount">
+                    <p id="endTime" class="fontcolor">Null</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
-
-
-    function calculateRepayment(){
-
+    // For counting the First pay month and last pay month
+    function countmonth(month, date) {
+        var nowyear = date.getFullYear();
+        var arr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var monthamount = Number(document.getElementById("inMonths").value);
+        if (month < date.getMonth() + 1) nowyear++;
+        document.getElementById("startTime").innerText = arr[month - 1] + " " + nowyear;
+        month += monthamount;
+        nowyear += Math.floor(month / 12);
+        month = month % 12 - 1;
+        document.getElementById("endTime").innerText = arr[month - 1] + " " + nowyear;
     }
 
-    function getInsurance(){ // use parameters and return the value from this function
-
-        return
+    function getInsurance(k) {
+        switch (k) {
+            case 0:
+                return 0;
+            case 1:
+                return 100;
+            case 2:
+                return 150;
+            case 3:
+                return 300;
+        }
     }
 
+    function monthlyPay(n, month) {
+        document.getElementById("payment").innerText = (n / month).toFixed(2);
+    }
+
+    // For calculting the Total Interest and Repayment
+    function countTotal(a, b) {
+        var month = Number(document.getElementById("inMonths").value);
+        var totalInterest = b;
+        for (var i = 1; i <= month; i++) {
+            if (i <= 36) b += b * 0.022;
+            else if (i > 36 && i <= 60) b += b * 0.033;
+            else if (i > 60 && i <= 84) b += b * 0.044;
+            else b += b * 0.055;
+        }
+        document.getElementById("TI").innerText = (b - totalInterest).toFixed(2);
+        var namount = a + b;
+        document.getElementById("TR").innerText = namount.toFixed(2);
+        monthlyPay(a + b, month);
+    }
+
+    // For showing the basic information
+    function showTitle(k) {
+        var name = document.getElementById("inFirstName").value;
+        document.getElementById("showTitle").innerHTML = "Dear " + name + ", this is your loan calculation";
+        var insur = Number(getInsurance(k));
+        document.getElementById("In").innerText = insur;
+        var loanAmount = Number(document.getElementById("inLoanAmount").value);
+        document.getElementById("AR").innerText = loanAmount;
+
+        countTotal(insur, loanAmount);
+    }
+
+    // For checking whether the input are all right
+    function checkInfor() {
+        var text = " Warning!<br>";
+        var analysis = true;
+        var sCheck = -1;
+        var month = Number(document.getElementById("startMonth").value);
+        var date = new Date();
+        var nowmonth = date.getMonth() + 1;
+        var cover = document.getElementsByName("required");
+        var loanAmount = document.getElementById("inLoanAmount").value;
+        var numberOfMonth = Number(document.getElementById("inMonths").value);
+        if (document.getElementById("inFirstName").value.length == 0) {
+            text += "Wrong input First Name.<br>";
+            analysis = false;
+        }
+
+        if (document.getElementById("inFamilyName").value.length == 0) {
+            text += "Wrong input Family Name.<br>";
+            analysis = false;
+        }
+
+        if (document.getElementById("inEmailAddress").value.length == 0) {
+            text += "Wrong input Email Address.<br>";
+            analysis = false;
+        }
+
+        if (document.getElementById("inLoanAmount").value.length == 0) {
+            text += "Wrong input Loan Amount.<br>";
+            analysis = false;
+        }
+
+        else if (loanAmount < 1000 || loanAmount > 10000) {
+            text += "Please input an amount of loan between 1000 to 10000.<br>";
+            analysis = false;
+        }
+
+        if (document.getElementById("inMonths").value.length == 0) {
+            text += "Please input a amount of Months.<br>";
+            analysis = false
+        }
+
+        else if (numberOfMonth < 12 || numberOfMonth > 120) {
+            text += "Please input a amount of Months between 12 to 120.<br>";
+            analysis = false;
+
+        }
+
+        if (document.getElementById("startMonth").value.length == 0) {
+            text += "Please input the start month.<br>";
+            analysis = false;
+        }
+
+        if (month == 0) {
+            text += "Please choose the start payments.<br>";
+            analysis = false;
+        }
+        else if ((nowmonth > 6 && (month + 6) > nowmonth && month < 6) ||
+            month >= 6 && nowmonth > 6 && nowmonth > month ||
+            (nowmonth < 6 && nowmonth + 6 < month) ||
+            (nowmonth < 6 && nowmonth > month)) {
+            text += "Start payments should be within 6 months.<br>";
+            analysis = false;
+        }
+
+        for (var i = 0; i < 4; i++) {
+            if (cover[i].checked) {
+                sCheck = i;
+                break;
+            }
+        }
+
+        if (sCheck == -1) {
+            text += "Please choose the option of insurance.<br>";
+            analysis = false;
+        }
+        if (analysis == true) {
+            document.getElementById("errorMessage").innerHTML = "Successfully Input !";
+            showTitle(sCheck);
+            countmonth(month, date);
+        }
+        else document.getElementById("errorMessage").innerHTML = text;
+    }
+
+
+    function showAll() {
+        checkInfor();
+    }
 </script>
 
 </body>
