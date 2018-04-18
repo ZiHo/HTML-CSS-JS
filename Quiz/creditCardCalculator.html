@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<style>
+    #container {
+        position: relative;
+        width: 555px;
+        background-color: lightblue;
+    }
+
+    #commentBox {
+        position: absolute;
+        background-color: lightgoldenrodyellow;
+        width: 220px;
+        height: 500px;
+        right: 20px;
+        top: 50px;
+    }
+
+    h2 {
+        text-align: center;
+        color: green;
+        /*font-family: "Times New Roman";*/
+    }
+
+    #showInformation{
+        color: blue;
+        /*font-weight: bold;*/
+    }
+    #inputDiv {
+        position: relative;
+        background-color: blue;
+        width: 220px;
+        height: 500px;
+        left: 20px;
+        color: yellow;
+    }
+</style>
+<body>
+<div id="container">
+    <h2>Credit Card Payoff Task</h2>
+
+    <div id="inputDiv">
+        Title<br/>
+        <input type="radio" name="title" value="A"/> Ms
+        <input type="radio" name="title" value="B"/> Mr
+        <input type="radio" name="title" value="C"/> Dr
+        <input type="radio" name="title" value="D"/> Prof<br>
+
+        First Name<br/>
+        <input type="text" id="firstName"/><br/>
+        Family Name<br/>
+        <input type="text" id="familyName"/><br/>
+        Remaining Amount<br/>
+        <input type="number" id="remaining"/><br/>
+        Monthly Payment<br/>
+        <input type="number" id="monthly"/><br/>
+        Last Payment<br/>
+        <input type="text" id="lastPayment" disabled> <br/>
+        Number of Payments<br/>
+        <input type="text" id="numOfPayments" disabled> <br/><br/>
+        <button onclick="myFunction()">submit</button>
+    </div>
+
+    <div id="commentBox">
+        <p id="showInformation"></p>
+    </div>
+</div>
+
+<script>
+
+    function myFunction() { // do not change the name of the function
+
+        var title = getTitle(); // complete the function gettitle() below to get the title
+        var fName = document.getElementById("firstName").value;
+        var famName = document.getElementById("familyName").value;
+        var remainingAmount = Number(document.getElementById('remaining').value);
+        var monthly = Number(document.getElementById('monthly').value);
+        var interest = 1.9 / 100;
+        var lastPayment;
+        var months = 0;
+
+        // calculate last payment amount, number of payments and last paying month
+        while (monthly <= remainingAmount ){
+            months++;
+            remainingAmount = (remainingAmount - monthly) * (1+interest);
+        }
+        months++;
+        lastPayment = remainingAmount;
+        // print the information to commentBox and input element
+        printComments(title, fName, famName, months, lastPayment, monthly);
+
+        // output the informatin to input field
+
+
+    } // end of function myFunction
+
+
+    function printComments(title, fn, fam, numOfMths, lastPayment, monthly) {
+//	title - title from radio buttons
+//	fn - first name
+//	fam -  fammily name
+//	numOfMths - number of months to pay off the remaining
+//	lastPayment -  last payment amount
+//	monthly - payment per month 
+
+// code here - output to <div id="commentBox"></div>
+        var text;
+        document.getElementById('lastPayment').disabled=false;
+        document.getElementById('numOfPayments').disabled=false;
+        document.getElementById("lastPayment").innerHTML = lastPayment;
+        document.getElementById("numOfPayments").innerHTML = numOfMths;
+        text = "Dear " + title + " " + fn + " " + fam + ",<br>" + "<br>" + "paying " + monthly
+            + " per month will take " + numOfMths + " months and your Last Payments is "
+            + lastPayment.toFixed(2);
+        document.getElementById("showInformation").innerHTML = text;
+    }
+
+
+    function getTitle() {
+
+        var title;
+        var title1 = document.getElementsByName("title").value;
+        switch (title1) {
+            case "A": {
+                title = "Ms";
+                break;
+            }
+            case "B": {
+                title = "Mr";
+                break;
+            }
+            case "C": {
+                title = "Dr";
+                break;
+            }
+            case "D": {
+                title = "Prof";
+                break;
+            }
+        }
+        // return the appropriate title
+
+        // check the radio buttons and return the  value
+
+        // find out the title for the checked value and assign to the "title" variable
+
+        //code here
+
+        return title; // you must use this statement
+    }
+
+
+</script>
+
+</body>
+</html>
