@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>This example calls a function which performs a calculation, and returns the result:</p>
+
+<p id="demo"></p>
+<button onclick="mainFunction()" > Go to Main Function</button>
+<script>
+// declare global variables to use any where in the code
+
+
+function mainFunction() {// this function is called when the button is clicked
+inputNum1 = 7;
+inputNum2 = 6;
+
+var answer = multiplyTwoNumbers(inputNum1, inputNum2 );
+
+// display the answer
+var myOutput = "Answer: " + inputNum1 + " x " + inputNum2 + " = " + answer;
+setDemo(myOutput);
+}
+
+function multiplyTwoNumbers(a, b) {// receives two arguments a & b
+    return a * b;
+}
+
+function setDemo(text) { // Only purpose is to display the output to an element
+
+document.getElementById("demo").innerHTML = text;
+
+}
+</script>
+
+</body>
+</html>
