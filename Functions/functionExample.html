@@ -3,33 +3,71 @@
 <body>
 
 <p>This example calls a function which performs a calculation, and returns the result:</p>
-
+<input type="number" id="num1" value=6>*
+<input type="number" id="num2" value=7><br>
 <p id="demo"></p>
-<button onclick="mainFunction()" > Go to Main Function</button>
+<p id="demo2"></p>
+<button onclick="mainFunction()"> Go to Main Function</button>
 <script>
-// declare global variables to use any where in the code
+    // declare global variables to use any where in the code
 
+    function changeIntoEnglish(num){
+        switch (num){
+            case 0: return "zero";
+                break;
 
-function mainFunction() {// this function is called when the button is clicked
-inputNum1 = 7;
-inputNum2 = 6;
+            case 1: return "one";
+                break;
 
-var answer = multiplyTwoNumbers(inputNum1, inputNum2 );
+            case 2: return "two";
+                break;
+
+            case 3: return "three";
+                break;
+
+            case 4: return "four";
+                break;
+
+            case 5: return "five";
+                break;
+
+            case 6: return "six";
+                break;
+
+            case 7: return "sever";
+                break;
+
+            case 8: return "eight";
+                break;
+
+            case 9: return "nine";
+                break;
+
+        }
+    }
+
+    function mainFunction() {// this function is called when the button is clicked
+        var inputNum1 = Number(document.getElementById("num1").value);
+        var inputNum2 = Number(document.getElementById("num2").value);
+        var num1English = changeIntoEnglish(inputNum1);
+        var num2English = changeIntoEnglish(inputNum2);
+        var answer = multiplyTwoNumbers(inputNum1, inputNum2);
 
 // display the answer
-var myOutput = "Answer: " + inputNum1 + " x " + inputNum2 + " = " + answer;
-setDemo(myOutput);
-}
+        var myOutput = "Answer: " + inputNum1 + " x " + inputNum2 + " = " + answer;
+        var myOutput2 = "Answer: " + num1English +" x " + num2English + " = " + answer;
+        setDemo(myOutput,myOutput2);
+    }
 
-function multiplyTwoNumbers(a, b) {// receives two arguments a & b
-    return a * b;
-}
+    function multiplyTwoNumbers(a, b) {// receives two arguments a & b
+        return a * b;
+    }
 
-function setDemo(text) { // Only purpose is to display the output to an element
+    function setDemo(text,text2) { // Only purpose is to display the output to an element
+        var showAns = text + "<br>" + text2;
+        document.getElementById("demo").innerHTML = showAns;
 
-document.getElementById("demo").innerHTML = text;
-
-}
+    }
 </script>
 
 </body>
