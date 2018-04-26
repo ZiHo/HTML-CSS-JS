@@ -3,11 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Name List</title>
+
+    <style>
+        #theAll {
+            width: 800px;
+            position: relative;
+            margin-right: auto;
+            margin-left: auto;
+            background: peachpuff;
+            height: 500px;
+        }
+
+        #inputBox {
+            left: 50px;
+            width: 200px;
+            height: 400px;
+            position: relative;
+            background-color: lightblue;
+            float: left;
+        }
+
+        #showBox {
+            left: 100px;
+            width: 200px;
+            height: 400px;
+            position: relative;
+            background-color: lightcoral;
+            float: left;
+        }
+    </style>
 </head>
 <body>
-    <h2>Name List</h2>
-    <div id = "input">
-
+<h2 style="text-align: center"> Name List </h2>
+<div id="theAll">
+    <h3 style="text-align: center"> Names </h3>
+    <div id="inputBox">
+        <input type="text" id="newName">
+        <br> <br>
+        <button onclick="addName()"> Add Name</button>
+        <br> <br>
+        <button onclick="removeName()"> Remove Name</button>
+        <br> <br>
+        <button onclick="sortAtoZ()"> Sort A-Z</button>
+        <br> <br>
+        <button onclick="sortZtoA()"> Sort Z-A</button>
     </div>
+    <div id="showBox">
+        <p id="nameList"></p>
+    </div>
+</div>
+
+<script>
+    var names = [];
+
+    function addName() {
+        var nameForAdd = document.getElementById("newName").value;
+        //alert(nameForAdd);
+        names.push(nameForAdd);
+        showNamelist();
+    }
+
+    function removeName() {
+        var nameForRemove = document.getElementById("newName").value;
+    }
+
+    function sortAtoZ() {
+        names.sort();
+        showNamelist();
+    }
+
+    function sortZtoA() {
+        names.reverse();
+        showNamelist();
+    }
+    function showNamelist() {
+        var text = "<ol>";
+        var namelenth = names.length;
+        var i;
+        for (i = 0; i < namelenth; i++) {
+            text += "<li>" + names[i] + "</li>";
+        }
+        document.getElementById("nameList").innerHTML = text;
+    }
+</script>
 </body>
+
 </html>
